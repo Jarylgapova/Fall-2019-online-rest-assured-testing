@@ -26,14 +26,14 @@ public class Spartan {
     public Spartan(String name, String gender, long phoneNumber) {
         this.name = name;
         this.gender = gender;
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
     }
 
     public Spartan(int id, String name, String gender, long phoneNumber) {
         this.id = id;
         this.name = name;
         this.gender = gender;
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
     }
 
     public Spartan() {
@@ -64,7 +64,10 @@ public class Spartan {
         return phoneNumber;
     }
 
-    public void setPhoneNumber() {
+    public void setPhoneNumber(long phoneNumber) {
+        if (String.valueOf(phoneNumber).length() < 10) {
+            throw new RuntimeException("Phone number is too short!");
+        }
         this.phoneNumber = phoneNumber;
     }
 
@@ -90,5 +93,9 @@ public class Spartan {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, gender, phoneNumber);
+    }
+
+    public void setName(String name) {
+        this.name=name;
     }
 }
